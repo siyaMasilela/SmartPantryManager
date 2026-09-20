@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.models;
+package com.Siya_Masilela_402110604.smartpantrymanager.models;
 
 import java.util.List;
 import java.util.Map;

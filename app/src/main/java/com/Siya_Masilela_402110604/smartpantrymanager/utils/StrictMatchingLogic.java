@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.utils;
+package com.Siya_Masilela_402110604.smartpantrymanager.utils;
 
 import com.Siya_Masilela_402110604.smartpantrymanager.models.PantryItem;
 import com.Siya_Masilela_402110604.smartpantrymanager.models.Recipe;

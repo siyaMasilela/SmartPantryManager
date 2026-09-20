@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.activities;
+package com.Siya_Masilela_402110604.smartpantrymanager.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Siya_Masilela_402110604.smartpantrymanager.R;
+import com.Siya_Masilela_402110604.smartpantrymanager.MainActivity;
 import com.Siya_Masilela_402110604.smartpantrymanager.adapters.RecipeAdapter;
 import com.Siya_Masilela_402110604.smartpantrymanager.database.DatabaseHelper;
 import com.Siya_Masilela_402110604.smartpantrymanager.models.PantryItem;
@@ -76,7 +77,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             tvNoRecipes.setVisibility(View.GONE);
             recyclerViewRecipes.setVisibility(View.VISIBLE);
             if (recipeAdapter == null) {
-                recipeAdapter = new RecipeAdapter(this, suggestedRecipes, recipe -> {
+                recipeAdapter = new RecipeAdapter(suggestedRecipes, recipe -> {
                     Intent intent = new Intent(SuggestedRecipesActivity.this, RecipeDetailActivity.class);
                     intent.putExtra("recipe_id", recipe.getId());
                     intent.putExtra("recipe_name", recipe.getName());

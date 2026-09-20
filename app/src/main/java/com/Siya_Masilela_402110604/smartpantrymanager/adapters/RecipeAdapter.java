@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.adapters;
+package com.Siya_Masilela_402110604.smartpantrymanager.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

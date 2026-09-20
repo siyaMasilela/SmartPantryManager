@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.database;
+package com.Siya_Masilela_402110604.smartpantrymanager.database;
 
 import android.content.ContentValues;
 import android.content.Context;

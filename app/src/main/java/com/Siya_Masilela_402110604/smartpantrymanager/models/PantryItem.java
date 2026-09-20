@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager.models;
+package com.Siya_Masilela_402110604.smartpantrymanager.models;
 
 public class PantryItem {
     private int id;

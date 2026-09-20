@@ -1,4 +1,4 @@
-﻿package com.Siya_Masilela_402110604.smartpantrymanager;
+package com.Siya_Masilela_402110604.smartpantrymanager;
 
 import android.content.Intent;
 import android.os.Bundle;
