@@ -14,6 +14,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    public static final String PREFS_NAME = "SmartPantryPrefs";
+    public static final String KEY_EXPIRY_ALERTS = "expiry_alerts";
+    public static final String KEY_UNIT_PREFERENCE = "unit_preference";
+    public static final String UNIT_METRIC = "metric";
+    public static final String UNIT_IMPERIAL = "imperial";
+
     private SwitchCompat switchExpiryAlerts;
     private RadioGroup radioGroupUnits;
     private SharedPreferences sharedPreferences;
@@ -22,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        sharedPreferences = getSharedPreferences("SmartPantryPrefs", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbarSettings);
         setSupportActionBar(toolbar);
@@ -35,13 +41,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         switchExpiryAlerts.setOnCheckedChangeListener((b, c) -> {
             SharedPreferences.Editor e = sharedPreferences.edit();
-            e.putBoolean("expiry_alerts", c);
+            e.putBoolean(KEY_EXPIRY_ALERTS, c);
             e.apply();
         });
 
         radioGroupUnits.setOnCheckedChangeListener((g, id) -> {
             SharedPreferences.Editor e = sharedPreferences.edit();
-            e.putString("unit_preference", id == R.id.radioMetric ? "metric" : "imperial");
+            e.putString(KEY_UNIT_PREFERENCE, id == R.id.radioMetric ? UNIT_METRIC : UNIT_IMPERIAL);
             e.apply();
         });
 
@@ -65,9 +71,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadSettings() {
-        switchExpiryAlerts.setChecked(sharedPreferences.getBoolean("expiry_alerts", true));
-        String unitPref = sharedPreferences.getString("unit_preference", "metric");
-        if (unitPref.equals("imperial")) radioGroupUnits.check(R.id.radioImperial);
+        switchExpiryAlerts.setChecked(sharedPreferences.getBoolean(KEY_EXPIRY_ALERTS, true));
+        String unitPref = sharedPreferences.getString(KEY_UNIT_PREFERENCE, UNIT_METRIC);
+        if (UNIT_IMPERIAL.equals(unitPref)) radioGroupUnits.check(R.id.radioImperial);
         else radioGroupUnits.check(R.id.radioMetric);
     }
 
