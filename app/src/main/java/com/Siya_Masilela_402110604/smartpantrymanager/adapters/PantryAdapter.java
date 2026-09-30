@@ -37,10 +37,9 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PantryItem item = items.get(position);
-        String displayName = item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1);
-        holder.tvItemName.setText(displayName);
+        holder.tvItemName.setText(capitalize(item.getName()));
 
-        String details = item.getQuantity() + " " + item.getUnit();
+        String details = formatQuantity(item.getQuantity()) + " " + item.getUnit();
         if (item.getExpiryDate() != null && !item.getExpiryDate().isEmpty()) {
             details += " | Expires: " + item.getExpiryDate();
         }
@@ -48,6 +47,17 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
 
         holder.btnEdit.setOnClickListener(v -> listener.onEditClick(item));
         holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(item));
+    }
+
+    private static String capitalize(String name) {
+        if (name == null || name.isEmpty()) return "";
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    // Show 2.0 as "2" but keep 0.5 as "0.5"
+    private static String formatQuantity(double quantity) {
+        if (quantity == Math.rint(quantity)) return String.valueOf((long) quantity);
+        return String.valueOf(quantity);
     }
 
     @Override
