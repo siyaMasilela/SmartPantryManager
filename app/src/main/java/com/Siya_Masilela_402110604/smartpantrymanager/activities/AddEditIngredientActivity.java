@@ -11,6 +11,9 @@ import com.Siya_Masilela_402110604.smartpantrymanager.R;
 import com.Siya_Masilela_402110604.smartpantrymanager.database.DatabaseHelper;
 import com.Siya_Masilela_402110604.smartpantrymanager.models.PantryItem;
 import com.google.android.material.textfield.TextInputEditText;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AddEditIngredientActivity extends AppCompatActivity {
 
@@ -70,6 +73,9 @@ public class AddEditIngredientActivity extends AppCompatActivity {
             etQuantity.setError("Invalid number"); etQuantity.requestFocus(); return;
         }
         if (TextUtils.isEmpty(unit)) { etUnit.setError("Required"); etUnit.requestFocus(); return; }
+        if (!TextUtils.isEmpty(expiry) && !isValidDate(expiry)) {
+            etExpiry.setError("Use YYYY-MM-DD"); etExpiry.requestFocus(); return;
+        }
 
         PantryItem item = new PantryItem(itemId, name, quantity, unit, expiry);
 
@@ -82,6 +88,17 @@ public class AddEditIngredientActivity extends AppCompatActivity {
             else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show(); return; }
         }
         finish();
+    }
+
+    private boolean isValidDate(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        format.setLenient(false);
+        try {
+            format.parse(date);
+            return date.matches("\\d{4}-\\d{2}-\\d{2}");
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
     @Override
