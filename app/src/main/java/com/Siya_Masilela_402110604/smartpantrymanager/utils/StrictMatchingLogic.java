@@ -31,16 +31,20 @@ public class StrictMatchingLogic {
     }
 
     private static boolean hasIngredient(List<PantryItem> pantryItems, String requiredName, double requiredQuantity) {
+        // Sum quantities across all matching entries so duplicate pantry rows count together
+        double availableQuantity = 0;
+        boolean found = false;
         for (PantryItem item : pantryItems) {
+            if (item.getName() == null) continue;
             String pantryName = item.getName().toLowerCase().trim();
-            if (pantryName.equals(requiredName)) {
-                return item.getQuantity() >= requiredQuantity;
-            }
-            if (isPluralMatch(pantryName, requiredName) || isPluralMatch(requiredName, pantryName)) {
-                return item.getQuantity() >= requiredQuantity;
+            if (pantryName.equals(requiredName)
+                    || isPluralMatch(pantryName, requiredName)
+                    || isPluralMatch(requiredName, pantryName)) {
+                availableQuantity += item.getQuantity();
+                found = true;
             }
         }
-        return false;
+        return found && availableQuantity >= requiredQuantity;
     }
 
     private static boolean isPluralMatch(String word1, String word2) {

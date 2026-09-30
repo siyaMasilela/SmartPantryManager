@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">SmartPantryManager</string>
+
+    <!-- Add / Edit ingredient -->
+    <string name="title_add_ingredient">Add Ingredient</string>
+    <string name="title_edit_ingredient">Edit Ingredient</string>
+    <string name="btn_save_ingredient">Save Ingredient</string>
+    <string name="btn_update_ingredient">Update Ingredient</string>
+    <string name="hint_ingredient_name">Ingredient Name</string>
+    <string name="hint_quantity">Quantity</string>
+    <string name="hint_unit">Unit</string>
+    <string name="hint_expiry_date">Expiry Date (YYYY-MM-DD)</string>
+    <string name="error_required">Required</string>
+    <string name="error_quantity_positive">Must be &gt; 0</string>
+    <string name="error_invalid_number">Invalid number</string>
+    <string name="error_invalid_date">Use YYYY-MM-DD</string>
+    <string name="toast_ingredient_added">Added</string>
+    <string name="toast_ingredient_updated">Updated</string>
+    <string name="toast_error">Error</string>
 </resources>

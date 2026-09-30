@@ -89,11 +89,8 @@ If any single ingredient is missing, the recipe is skipped entirely.
 
 ## Author
 
-Name: Siya Masilela
+Name: Siyabonga Masilela
 Student Number: 402110604
 Module: Mobile App Development 700
 Year: 2026
 
-## Note
-
-This project was created for academic purposes as part of the Mobile App Development 700 module.
