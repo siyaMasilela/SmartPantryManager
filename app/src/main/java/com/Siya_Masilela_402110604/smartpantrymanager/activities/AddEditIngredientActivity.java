@@ -41,16 +41,16 @@ public class AddEditIngredientActivity extends AppCompatActivity {
 
         mode = getIntent().getStringExtra("mode");
         if ("edit".equals(mode)) {
-            getSupportActionBar().setTitle("Edit Ingredient");
-            btnSave.setText("Update Ingredient");
+            getSupportActionBar().setTitle(R.string.title_edit_ingredient);
+            btnSave.setText(R.string.btn_update_ingredient);
             itemId = getIntent().getIntExtra("item_id", -1);
             etName.setText(getIntent().getStringExtra("item_name"));
             etQuantity.setText(String.valueOf(getIntent().getDoubleExtra("item_quantity", 0)));
             etUnit.setText(getIntent().getStringExtra("item_unit"));
             etExpiry.setText(getIntent().getStringExtra("item_expiry"));
         } else {
-            getSupportActionBar().setTitle("Add Ingredient");
-            btnSave.setText("Save Ingredient");
+            getSupportActionBar().setTitle(R.string.title_add_ingredient);
+            btnSave.setText(R.string.btn_save_ingredient);
         }
 
         btnSave.setOnClickListener(v -> saveIngredient());
@@ -62,30 +62,30 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         String unit = etUnit.getText().toString().trim();
         String expiry = etExpiry.getText().toString().trim();
 
-        if (TextUtils.isEmpty(name)) { etName.setError("Required"); etName.requestFocus(); return; }
-        if (TextUtils.isEmpty(quantityStr)) { etQuantity.setError("Required"); etQuantity.requestFocus(); return; }
+        if (TextUtils.isEmpty(name)) { etName.setError(getString(R.string.error_required)); etName.requestFocus(); return; }
+        if (TextUtils.isEmpty(quantityStr)) { etQuantity.setError(getString(R.string.error_required)); etQuantity.requestFocus(); return; }
 
         double quantity;
         try {
             quantity = Double.parseDouble(quantityStr);
-            if (quantity <= 0) { etQuantity.setError("Must be > 0"); etQuantity.requestFocus(); return; }
+            if (quantity <= 0) { etQuantity.setError(getString(R.string.error_quantity_positive)); etQuantity.requestFocus(); return; }
         } catch (NumberFormatException e) {
-            etQuantity.setError("Invalid number"); etQuantity.requestFocus(); return;
+            etQuantity.setError(getString(R.string.error_invalid_number)); etQuantity.requestFocus(); return;
         }
-        if (TextUtils.isEmpty(unit)) { etUnit.setError("Required"); etUnit.requestFocus(); return; }
+        if (TextUtils.isEmpty(unit)) { etUnit.setError(getString(R.string.error_required)); etUnit.requestFocus(); return; }
         if (!TextUtils.isEmpty(expiry) && !isValidDate(expiry)) {
-            etExpiry.setError("Use YYYY-MM-DD"); etExpiry.requestFocus(); return;
+            etExpiry.setError(getString(R.string.error_invalid_date)); etExpiry.requestFocus(); return;
         }
 
         PantryItem item = new PantryItem(itemId, name, quantity, unit, expiry);
 
         if ("edit".equals(mode)) {
             databaseHelper.updatePantryItem(item);
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_ingredient_updated, Toast.LENGTH_SHORT).show();
         } else {
             long result = databaseHelper.addPantryItem(item);
-            if (result != -1) Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
-            else { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show(); return; }
+            if (result != -1) Toast.makeText(this, R.string.toast_ingredient_added, Toast.LENGTH_SHORT).show();
+            else { Toast.makeText(this, R.string.toast_error, Toast.LENGTH_SHORT).show(); return; }
         }
         finish();
     }

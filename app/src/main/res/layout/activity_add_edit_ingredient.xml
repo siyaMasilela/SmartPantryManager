@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Ingredient Name">
+            android:hint="@string/hint_ingredient_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etIngredientName"
@@ -40,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Quantity">
+                android:hint="@string/hint_quantity">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etQuantity"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:hint="Unit">
+                android:hint="@string/hint_unit">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUnit"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Expiry Date (YYYY-MM-DD)">
+            android:hint="@string/hint_expiry_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etExpiryDate"
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Save Ingredient" />
+            android:text="@string/btn_save_ingredient" />
 
     </LinearLayout>
 
